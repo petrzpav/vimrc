@@ -1,0 +1,77 @@
+"auto-install vim-plug (globally)
+if empty(glob('/etc/vim/autoload/plug.vim'))
+silent !curl -fLo /etc/vim/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+set runtimepath+=/etc/vim/autoload
+"initialize plugin system
+call plug#begin('/etc/vim/plugged')
+  Plug 'https://github.com/morhetz/gruvbox.git'
+  Plug 'https://github.com/vim-syntastic/syntastic.git'
+  Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+call plug#end()
+"end of initialization of plugin system
+
+"auto install missing plugins
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif 
+
+"set runtimepath^=/usr/local/share/vim/gruvbox/,/usr/local/share/vim/syntastic/,/usr/local/share/vim/ctrlp/,/usr/local/share/vim/vim-minimap/
+
+"show current command
+set showcmd
+
+"show syntax
+syntax on
+filetype plugin indent on
+
+"show line numbers
+set number
+
+"set tabs
+set expandtab
+set shiftwidth=2
+set tabstop=2
+
+"highlight search
+set hlsearch
+set incsearch
+
+"highlight active line
+"set cursorline
+
+"tabs next, prev
+nnoremap <C-A-Left> :tabprevious<CR>
+nnoremap <C-A-Right> :tabnext<CR>
+nnoremap <C-w> :tab close<CR>
+nnoremap <C-t> :tabnew<CR>
+
+"set colorscheme
+let g:gruvbox_italic=0
+colorscheme gruvbox
+set background=dark
+
+"autocomplete
+function! Tab_Or_Complete()
+if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+  return "\<C-N>"
+else
+  return "\<Tab>"
+endif
+endfunction
+
+:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+:set dictionary="/usr/dict/words"
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
