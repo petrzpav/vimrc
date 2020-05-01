@@ -4,11 +4,11 @@
 - auto install plugins
 - debian ready
 
-# Reuirements
+## Reuirements
 
 - vim
 
-# Installation
+## Installation
 
 1. `git clone https://github.com/petrzpav/vimrc.git /etc/vim`
 1. `mkdir /etc/vim/autoload && chmod 755 /etc/vim/autoload`
