@@ -1,15 +1,21 @@
-# Personal vim settings
+# Global vim settings
 
-- global (for all users)
-- auto install plugins
-- debian ready
+Sets color scheme (grovebox), tab support, syntax highlight, quick file opener, autocomplete and others. Installs required plugins automatically. Tested on Debian & Ubuntu.
 
 ## Reuirements
 
+- curl
 - vim
 
-## Installation
+## Global installation
 
-1. `git clone https://github.com/petrzpav/vimrc.git /etc/vim`
-1. `mkdir /etc/vim/autoload && chmod 755 /etc/vim/autoload`
+Running `sudo vim` for the first time installs necessary plugins.
+
+   ```
+   { ~ } » git clone https://github.com/petrzpav/vimrc.git
+   { ~ } » sudo mkdir /etc/vim/autoload && chmod 777 /etc/vim/autoload
+   { ~ } » sudo ln -sf ~/vimrc/vimrc* /etc/vim
+   { ~ } » mkdir .vim
+   { ~ } » sudo vim
+   ```
 
