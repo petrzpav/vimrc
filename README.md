@@ -2,7 +2,7 @@
 
 Sets color scheme (grovebox), tab support, syntax highlight, quick file opener, autocomplete and others. Installs required plugins automatically. Tested on Debian & Ubuntu.
 
-## Reuirements
+## Requirements
 
 - curl
 - vim
